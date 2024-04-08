@@ -1,0 +1,43 @@
+<html>
+
+    <head>
+        <title>Message Wall</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <h1 class="unselectable">
+            <div id="logo-container"> <img id="logo" src="/assets/logo.png"> </div>
+            Entkoppeltes Signal
+        </h1>
+
+        <!-- Cancel button -->
+        <img id="cancel-btn" src="/assets/cancel.png">
+
+        <!-- Message list -->
+        <ul id="message-list"></ul>
+
+        <!-- Indicator -->
+        <div id="indicator-container" onclick="scrollDown(0)">
+            <div id="indicator"> <img src="/assets/arrow.png"> </div>
+        </div>
+
+        <!-- Footer / Form -->
+        <form method="post" id="message-form" action="addmsg">
+            <input hidden type="file" name="image" id="image">
+            <input hidden type="text" name="selection" id="selection">
+            <img src="/assets/file.png" id="file-btn" class="unselectable">
+            <div>
+                <input type="text" name="author" id="author" placeholder="Name" style="width:17.5vw">
+                <input type="text" name="message" id="message" placeholder="Message" style="width:50vw">
+            </div>
+            <img src="/assets/send.png" id="send-btn", class="unselectable">
+        </form>
+
+        <!-- Client-side code -->
+        <script src="client.js"> </script>
+
+    </body>
+</html>

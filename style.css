@@ -1,0 +1,252 @@
+
+/* ------------ Helpers ------------ */
+
+@font-face {                                                  /* Load Arimo font */
+    font-family: 'Arimo';
+    src: url('./fonts/Arimo.eot');
+    src: url('./fonts/Arimo.woff') format('woff'),
+         url('./fonts/Arimo.ttf')  format('truetype'),
+         url('./fonts/Arimo.svg') format('svg');
+}
+
+/* Class for unselectable text elements */
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Up-Down animation */
+@keyframes moveUpDown {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-2vh); }
+}
+
+
+/* ------------ Styled HTML elements ------------ */
+
+html {
+    overflow-x: hidden;                                       /* Prevent horizontal scroll */
+}
+
+body {
+    font-family: "Arimo", sans-serif;                         /* Load Arimo font */
+    background-color: #000;                                   /* Set background color */
+    margin: 0;                                                /* Remove default margin */
+}
+
+/* Header */
+h1 {
+    position: fixed;                                          /* Fix header to the top of the screen */
+    width: 100%;                                              /* Fill the whole width */
+    height: 7.5vh;                                            /* Set height */
+    font-size: 3.25vh;                                         /* Set proportional font size */
+    margin: 0;                                                /* Remove margin above header */
+    padding-top: 0.5vh;                                       /* Define padding for elements inside header */
+    padding-bottom: 0.5vh;
+    padding-right: 5vw;
+    background: rgba(180, 180, 180, 0.6);                     /* Define translucent background */
+    backdrop-filter: blur(8px);                               /* Blur underlaying content */
+    -webkit-backdrop-filter: blur(8px);
+    text-align: center;                                       /* Horizontally align logo in circle */
+    box-shadow: 0 0 5vh 0 #000;                               /* Add shadow to the header */
+    display: flex;                                            /* Align items inside header */
+    align-items: center;
+    z-index: 3;                                               /* Define header to be above chat */
+    color: white;                                             /* Set text color */
+    text-shadow: 0 0 1vw black;                               /* Add shadow to the text */
+}
+
+/* Chat container */
+form {
+    position: fixed;                                          /* Fix container's position as footer */
+    bottom: 0;
+    margin-bottom: 0;                                         /* Remove default margin */
+    left: 0;
+    width: 100%;                                              /* Fill the whole width */
+    height: 7.5vh;                                            /* Set height */
+    background: rgba(180, 180, 180, 0.6);                     /* Define translucent background */
+    backdrop-filter: blur(8px);                               /* Blur underlaying content */
+    -webkit-backdrop-filter: blur(8px);
+    padding: 10px;                                            /* Define padding for elements inside container */
+    box-sizing: border-box;                                   /* Include padding in width */
+    display: flex;                                            /* Align items inside container */
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 3;                                               /* Define container to be above everything */
+}
+
+/* Text input fields (in chat container) */
+input {
+    height: 4.5vh;                                            /* Set height */
+    font-size: 2vh;                                           /* Set proportional font size */
+    margin-right: 1vw;                                        /* Define outer spacing */
+    padding-left: 2vw;                                        /* Define inner spacing */
+    border-radius: 3vh;                                       /* Make input field rounded */
+    box-sizing: border-box;                                   /* Include padding in width */
+    font-weight: 520;                                         /* Set font weight */
+}
+
+/* Messages container list */
+ul {
+    padding-left: 0;                                          /* Remove default padding */
+    padding-top: 9vh;                                         /* Padding to be below header */
+    padding-bottom: 10vh;                                     /* Padding to be above footer */
+    display: flex;                                            /* Align elements inside vertically */
+    flex-direction: column;
+}
+
+/* Single list entry */
+li {
+    padding-left: 5vw;                                        /* Define padding for elements inside message */
+    padding-right: 5vw;
+}
+
+
+/* ------------ Styled Elements ------------ */
+
+/* Logo container (in header) */
+#logo-container {
+    margin-left: 2vh;                                         /* Define outer spacing around logo */
+    margin-right: 2vh;
+    background-color: #ddd;                                   /* Define off-white background */
+    padding: 0.5vh;                                           /* Define inner spacing around logo */
+    height: 4.5vh;                                            /* Define logo size */
+    width: 4.5vh;
+    min-width: 4.5vh;
+    border-radius: 50%;                                       /* Make logo circular */
+    box-shadow: 0 0 1vh 0 rgba(0, 0, 0, 0.5);                 /* Add shadow to the logo */
+}
+
+/* Logo inside container */
+#logo {
+    height: 4.5vh;
+}
+
+/* Cancel button (in header) */
+#cancel-btn {
+    position: fixed;                                          /* Fix cancel button to the top right of the screen */
+    height: 4vh;                                              /* Set height */
+    right: 0;                                                 /* Align to the right of header */
+    margin-right: 2vh;
+    margin-top: 2vh;
+    cursor: pointer;                                          /* Change cursor on hover */
+    opacity: 0;                                               /* Hide button until selection is made */
+    z-index: 4;                                               /* Define cancel button to be above header */
+}
+
+/* Send button (in chat container) */
+#send-btn {
+    height: 3.5vh;                                            /* Set height */
+    float: right;                                             /* Align to the right */
+    cursor: pointer;                                          /* Change cursor on hover */
+    opacity: 0.5;                                             /* Make button semi-transparent until name & message is entered */
+}
+
+/* File upload button (in chat container) */
+#file-btn {
+    height: 3.5vh;                                            /* Set height */
+    cursor: pointer;                                          /* Change cursor on hover */
+    opacity: 0.5;                                             /* Make button semi-transparent until file is selected */
+}
+
+/* Message container */
+#message-div {
+    max-width: 60%;                                           /* Define maximum width of message */
+    word-wrap: break-word;                                    /* Break long words */
+    padding-left: 2.25vh;                                      /* Define padding for elements inside message */
+    padding-right: 2.25vh;
+    padding-top: 1vh;
+    padding-bottom: 1.25vh;
+    border-radius: 3vh;                                       /* Make message rounded */
+    line-height: 1.2;                                         /* Define horizontal spacing */
+    box-shadow: 0 0 1vh 0 rgba(0, 0, 0, 0.25);                /* Add shadow to the message */
+    z-index: 1;                                               /* Define message to be below header and footer */
+}
+
+/* Reply indication arrow */
+#reply-arrow {
+    width: 2vh;                                               /* Define dimensions */
+    height: 2vh;
+    margin-top: 1.5vh;                                        /* Define outer spacing */
+    margin-left: 0.5vh;
+    margin-right: 0.5vh;
+}
+
+/* Images in messages */
+#message-div img {
+    max-width: 100%;                                          /* Fill whole width of container */
+    display: block;                                           /* Align below text */
+    border-radius: 3vh;                                       /* Make image rounded */
+    margin-top: 1.25vh;                                        /* Define outer spacing */
+    margin-bottom: 1vh;
+    box-shadow: 0 0 1vh 0 rgba(0, 0, 0, 0.5);                 /* Add shadow to the image */
+}
+
+/* Name field in messages */
+#message-author {
+    font-size: 1.6vh;                                         /* Set proportional font size */
+    color: gray;                                              /* Set gray text color */
+    margin-bottom: 0.5vh;                                     /* Define outer spacing */
+}
+
+/* Text content in messages */
+#message-content {
+    font-size: 2.5vh;                                         /* Set proportional font size */
+}
+
+/* Indicator container */
+#indicator-container {
+    position: fixed;                                          /* Fix container's position to the bottom (above footer)*/
+    bottom: 8vh;
+    width: 100%;                                              /* Horizontally align items inside container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: moveUpDown 1.75s infinite;                     /* Animate indicator */
+}
+
+/* Unread messages indicator */
+#indicator {
+    width: 5vh;                                               /* Define dimensions */
+    min-width: 5vh;
+    height: 5vh;
+    background-color: rgba(180, 180, 180, 0.6);               /* Define translucent background */
+    backdrop-filter: blur(8px);                               /* Blur underlaying content */
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: 0 0 1vh 0 rgba(0,0,0,0.5);                    /* Add shadow to the indicator */
+    border-radius: 50%;                                       /* Make indicator circular */
+    display: flex;                                            /* Align items inside indicator */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Indicator icon */
+#indicator img {
+    width: 3vh;                                               /* Define dimensions */
+    height: 3vh;
+}
+
+
+/* ------------ Styled classes ------------ */
+
+/* Class for messages from other users */
+.external-message {
+    background-color: #333;                                   /* Set gray background */
+    clear: left;                                              /* Align to the left */
+    float: left;
+    color: #dedede;                                           /* Set off-white text color */
+}
+
+/* Class for messages from self */
+.self-message {
+    background: linear-gradient(to bottom,                    /* Define decent white gradient-overlay */
+                                rgba(255, 255, 255, 0.15),
+                                rgba(0, 0, 0, 0.075));
+    background-color: #3290ff;                                /* Set iMessage blue background */
+    clear: right;                                             /* Align to the right */
+    float: right;
+    color: white;                                             /* Set text color */
+}
